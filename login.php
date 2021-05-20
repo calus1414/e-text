@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+include_once './functions/function.php';
+
+
+userConnectAccess();
+
 $erreur = '';
 
 try{
@@ -31,7 +37,7 @@ if (!empty($_POST)) {
         } else {
 
 
-            $check_mail = $bdd->query('SELECT mail FROM utilisateur WHERE  mail="' . $mail . '"');
+            $check_mail = $bdd->query('SELECT email FROM utilisateur WHERE  email="' . $mail . '"');
             $donnee_mail =  $check_mail->fetch();
             if ($mail == $donnee_mail) {
 
@@ -39,7 +45,7 @@ if (!empty($_POST)) {
             } else {
 
                 $send = $bdd->prepare('INSERT INTO utilisateur VALUE(?,?,?,?,?,?)');
-                $send->execute(array("", $pseudo, $password, $nom, $prenom, $mail));
+                $send->execute(array("",  $nom, $prenom , $pseudo,$password, $mail));
             }
         }
     }

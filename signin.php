@@ -1,5 +1,9 @@
 <?php
 session_start();
+include_once './functions/function.php';
+
+userConnectAccess();
+
 $erreur= '';
 if(isset($_GET['password'])){  
     if(htmlentities($_GET['password']) === 'wrong'){
