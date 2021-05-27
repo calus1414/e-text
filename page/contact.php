@@ -1,7 +1,7 @@
 <?php
 session_start();
-$bool =true;
-include_once "./functions/function.php";
+
+include_once "../functions/function.php";
 $title = 'Contact';
 userUnconnectAccess();
 
@@ -9,7 +9,7 @@ userUnconnectAccess();
 $bdd = mysqli_connect('localhost','root','','etexte','3306');
 $donnees = mysqli_query($bdd,'SELECT pseudo FROM utilisateur');
 
-include_once "./page/header.php";
+include_once "../component/header.php";
 ?>
 
 
@@ -20,7 +20,7 @@ include_once "./page/header.php";
 <h4>Contact</h4>
 <div class="wrapper-pseudo">
 <p>Cliquer sur les pseudo pour le contacter en privée</p>
-<form action='message_priver.php' class='row' method='GET'>
+<form action='./message_priver.php' class='row' method='GET'>
 
 <?php
 
@@ -35,6 +35,6 @@ echo '<input type="submit" class="btn  btn-info col m-2" name="pseudo-contact" v
 </div>
 <?php
 
-include_once "./page/aside.php";
+include_once "../component/aside.php";
 ?>
 </main>

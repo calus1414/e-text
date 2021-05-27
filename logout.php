@@ -2,7 +2,7 @@
 
 session_start();
 session_unset();
-header("Location: accueil.php");
+header("Location: ./page/accueil.php");
 
 
 ?>

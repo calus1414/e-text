@@ -2,7 +2,7 @@
 
 session_start();
 
-include_once 'functions/function.php';
+include_once '../functions/function.php';
 
 userUnconnectAccess();
 
@@ -11,14 +11,17 @@ $title = "Accueil";
 
 
 
+    try {
+        $bdd = mysqli_connect('localhost','root', '','etexte', "3306" );
+    } catch (Exception $e) {
+       die("Erreur : " . $e->getMessage());
+    }
+ 
 
 
 
-try {
-    $bdd = mysqli_connect('localhost','root', '','etexte', "3306" );
-} catch (Exception $e) {
-    die("Erreur : " . $e->getMessage());
-}
+
+
 
 if (isset($_POST['pseudo']) || isset($_POST['password'])) {
     $pseudo = htmlentities($_POST['pseudo']);
@@ -43,7 +46,7 @@ if (isset($_POST['pseudo']) || isset($_POST['password'])) {
         ];
     } else {
 
-        header('Location: login.php?connect=wrong');
+        header('Location: ./login.php?connect=wrong');
     }
 }
 
@@ -63,14 +66,16 @@ if(isset($_POST['destinataire_pseudo'])){
 
 }
 
-include_once "./page/header.php";
+include_once "../component/header.php";
 
 ?>
-<main class="container-xxl row p-5">
+<main class="container-xxl row p-4">
     <div class='col-8'>
 
-        <h4>Bonjour et bienvenu a toi <?= $_SESSION['user']['prenom'] ?></h4>
-        <a href="accueil.php"><input type="button" class='btn btn-info'value="rafraichir"></a>
+        <h4>Bonjour <strong><?= $_SESSION['user']['prenom'] ?></strong> et bienvenu  </h4>
+        
+
+        
         <div class='row'>
             <div id='messages'class='messages col-12'>
                 <?php
@@ -78,7 +83,9 @@ include_once "./page/header.php";
                 ?>
             </div>
             <div class='text col-12'>
-                <form action="messagerie.php" class='row' method="post" autofocus>
+                <form action="./accueil.php" class='row' method="post" autofocus>
+
+                
 
                     <textarea name="user-message"class='form-control' id="" cols="80" rows="3"></textarea>
 
@@ -91,12 +98,20 @@ include_once "./page/header.php";
 
     </div>
     <?php
-    include_once './page/aside.php';
+    include_once '../component/aside.php';
     ?>
 </main>
 
+<script>
+setInterval('load_messages()',1500);
 
-<script src="app.js"></script>
+function load_messages(){
+
+$('#messages').load('./load_messages.php');
+
+}
+</script>
+
 <?php
-include_once './page/footer.php';
+include_once '../component/footer.php';
 ?>

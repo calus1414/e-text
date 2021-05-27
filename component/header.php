@@ -4,7 +4,7 @@
 
 
 
-include_once './functions/function.php';
+include_once '../functions/function.php';
 // checkConnectAccess($bool);
 ?>
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ include_once './functions/function.php';
     <!-- CSS only -->
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-   <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="../style.css">
     <title><?= $title?></title>
 </head>
 <body>
@@ -30,7 +30,7 @@ include_once './functions/function.php';
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <?=navBar(false)?>
+       <?=navBar($bool=false)?> 
       </ul>
       <div >
       <ul class="navbar-nav me-auto ">
@@ -40,7 +40,7 @@ include_once './functions/function.php';
         ";
         echo $btn; 
     }else{
-      $btn = "<li class='nav-link's><a href='logout.php' class='link-danger'>ce deconnecter</a></li>";
+      $btn = "<li class='nav-link's><a href='../logout.php' class='link-danger'>ce deconnecter</a></li>";
         echo $btn;
        
     }?></ul>

@@ -19,7 +19,7 @@ $get_id = mysqli_query($bdd, 'Select id FROM utilisateur WHERE pseudo ="' . $pse
 
 $destinataire = mysqli_fetch_array($get_id, MYSQLI_ASSOC);
 
-include_once './functions/function.php';
+include_once '../functions/function.php';
 
 userUnconnectAccess();
 
@@ -28,7 +28,7 @@ if (isset($_POST['user-message'])) {
     sendPrivateMessage($bdd, $destinataire['id'], $_SESSION['user']['id'], $_POST['user-message']);
 }
 
-include_once "./page/header.php";
+include_once "../component/header.php";
 
 
 ?>
@@ -60,9 +60,18 @@ include_once "./page/header.php";
     </div>
 
 </main>
+<script>
 
+ setInterval('load_Private_messages()',1500);
+
+function load_Private_messages(){
+
+ $('#messages').load("./load_Private_messages.php?id=<?=$destinataire['id']?>");
+
+ }
+</script>
 
 <?php
 
-include_once "./page/footer.php";
+include_once "../component/footer.php";
 ?>

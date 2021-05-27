@@ -5,7 +5,7 @@
 }
 .messages{
     padding: 25px;
-   max-height: 200px; 
+   max-height: 250px; 
    overflow-y: scroll;
    scroll-behavior: smooth;
    background-color: whitesmoke;

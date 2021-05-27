@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once './functions/function.php';
+include_once '../functions/function.php';
 
 
 userConnectAccess();
@@ -24,7 +24,7 @@ if (!empty($_POST)) {
 
     if (!password_verify($password, $second_password)) {
 
-        header("Location: signin.php?password=wrong");
+        header("Location: ./signin.php?password=wrong");
     } else {
         $password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -33,7 +33,7 @@ if (!empty($_POST)) {
         echo $donnee_pseudo;
         if ($pseudo == $donnee_pseudo) {
 
-            header("Location: signin.php?pseudo=wrong");
+            header("Location: ./signin.php?pseudo=wrong");
         } else {
 
 
@@ -41,7 +41,7 @@ if (!empty($_POST)) {
             $donnee_mail =  $check_mail->fetch();
             if ($mail == $donnee_mail) {
 
-                header("Location: signin.php?mail=wrong");
+                header("Location: ./signin.php?mail=wrong");
             } else {
 
                 $send = $bdd->prepare('INSERT INTO utilisateur VALUE(?,?,?,?,?,?)');
@@ -60,13 +60,13 @@ if(isset($_GET['connect'])){
 
 
 $title = "conection";
-include_once "./page/header.php";
+include_once "../component/header.php";
 ?>
 
 
 <main class='container row p-5'>
     <div>
-        <form class="row g-3 needs-validation" action='accueil.php' method='POST' >
+        <form class="row g-3 needs-validation" action='./accueil.php' method='POST' >
 
             <div class="col-md-12">
                 <label for="validationCustomUsername" class="form-label">Pseudo</label>

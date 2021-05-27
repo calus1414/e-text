@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once './functions/function.php';
+include_once '../functions/function.php';
 
 userConnectAccess();
 
@@ -23,12 +23,12 @@ if(isset($_GET['password'])){
 }
 
 $title ="inscription";
-include_once "./page/header.php";
+include_once "../component/header.php";
 ?>
 
    <main class='container row p-5'>
    <div>
-   <form class="row g-3 needs-validation" action='login.php' method='POST'>
+   <form class="row g-3 needs-validation" action='./login.php' method='POST'>
   <div class="col-md-6">
     <label for="validationCustom01" class="form-label">Nom</label>
     <input type="text" class="form-control" name='nom' maxlength="30" id="validationCustom01"  required>

@@ -1,6 +1,6 @@
 
 <?php 
-include_once './functions/function.php';
+include_once '../functions/function.php';
 
 ?>
 <aside class='col-4'>
@@ -14,7 +14,7 @@ include_once './functions/function.php';
     if(isset($user) && $user !== $_SESSION['user']['pseudo']):
     ?>
 
-    <form action="message_priver.php" methode='GET'>
+    <form action="./page/message_priver.php" methode='GET'>
     <h5 class="card-subtitle mb-2 text-muted">Pseudo : <?= $user?></h5>
 
 <input type="hidden" name='pseudo-contact' value='<?=$user?>'>

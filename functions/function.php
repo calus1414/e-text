@@ -1,5 +1,4 @@
 <?php
-
 function makeNav($name, $link, $type)
 {
     if ($type === 'card') {
@@ -19,9 +18,16 @@ function navBar($bool = false)
 {
     if (!empty($_SESSION['user']['pseudo'])) {
         if ($bool === true) {
-            $nav_bar = makeNav('Accueil', "accueil.php", 'card') . makeNav('Contact', "contact.php", 'card');
+            $nav_bar = makeNav('Accueil', "./accueil.php", 'card') . makeNav('Contact', "./contact.php", 'card');
         } else {
-            $nav_bar = makeNav('Accueil', "accueil.php", 'nav') . makeNav('Contact', "contact.php", 'nav');
+            $nav_bar = makeNav('Accueil', "./accueil.php", 'nav') . makeNav('Contact', "./contact.php", 'nav')."<li><div class='btn-group'>
+            <button class='btn btn-info-light btn-lg dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+              Paramètre
+            </button>
+            <ul class='dropdown-menu'>
+              <li><a class='dropdown-item' href='new_password.php'>Nouveau mot de passe</a></li>
+            </ul>
+          </div></li>";
         }
         return $nav_bar;
     }
@@ -30,10 +36,10 @@ function navBar($bool = false)
 function btnConnect($user_online)
 {
     if ($user_online) {
-        $btn = "<li class='nav-link's><a href='logout.php' class='link-danger'>ce deconnecter</a></li>";
+        $btn = "<li class='nav-link's><a href='../logout.php' class='link-danger'>ce deconnecter</a></li>";
     } else {
         $btn = "<li class='nav-link'><a href='signin.php' class='link-secondary'>S'enregistrer</a></li>
-       <li class='nav-link's><a href='login.php'class='link-secondary'>ce connecter</a></li>
+       <li class='nav-link's><a href='./login.php'class='link-secondary'>ce connecter</a></li>
        ";
     }
     return $btn;
@@ -67,29 +73,33 @@ function sendMessage($base, $id, $message)
 function showMessage($base)
 {
 
-    $message = mysqli_query($base, "SELECT message , date,heure, pseudo
+    $message = mysqli_query($base, "SELECT  message , date,heure, pseudo
 FROM message
 INNER JOIN utilisateur ON message.utilisateur_id = utilisateur.id order by message.id ");
 
     while ($donnees = mysqli_fetch_array($message, MYSQLI_ASSOC)) {
-        echo '<div class="message">
-                        <form action="
-                        " method="post">
-                        <button type="submit" class="btn  btn-message" >
-                        <div class="row">
-                        <div class="col-2"><strong>' . $donnees['pseudo'] . '</strong></div>
-                        <div class="col-8 "><p class="p-4">' . $donnees['message'] . '</p></div>
-                         <div class="col-2">
-                         <input type="hidden" name="destinataire_pseudo" value="' . $donnees['pseudo'] . '">
-                         ' . $donnees['date'] . ' ' . $donnees['heure'] . '
-                        </div>
-                        </div>
-                        
-                        </button></form>
-                
-                        
-                        </div>
-                        <br>';
+       
+
+
+echo  '<div class="message">
+<form action="
+" method="post">
+<button type="submit" class="btn  btn-message" >
+<div class="row">
+<div class="col-2"><strong>' . $donnees['pseudo'] . '</strong></div>
+<div class="col-8 "><p class="p-4">' . $donnees['message'] . '</p></div>
+ <div class="col-2">
+ <input type="hidden" name="destinataire_pseudo" value="' . $donnees['pseudo'] . '">
+ ' . $donnees['date'] . ' ' . $donnees['heure'] . '
+</div>
+</div>
+
+</button></form>
+
+
+</div>
+<br>';
+
     }
 }
 
@@ -152,7 +162,7 @@ function userUnconnectAccess()
 {
   
     if(!isset($_SESSION['user']['connect'])){
-        header('Location: login.php');
+        header('Location: ./login.php');
     }
 
        
@@ -165,10 +175,10 @@ function userConnectAccess()
 
     
     if(isset($_SESSION['user']['connect'])){
-        header('Location: accueil.php');
+        header('Location: ./accueil.php');
     }
 
 }  
        
     
-    
+
